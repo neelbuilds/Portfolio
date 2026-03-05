@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { 
+import { Link } from 'wouter';
+import {
   Github, Linkedin, Mail,
-  ChevronDown, Code2, Database, Globe, Terminal, 
+  ChevronDown, Code2, Database, Globe, Terminal,
   Layers, Box, Zap, Award, GitBranch, BrainCircuit, Activity, BarChart3, ArrowRight, Send,
   Server, Cpu, Shield, FlaskConical, Cloud, Network,
 } from 'lucide-react';
@@ -204,20 +205,18 @@ const Navigation: React.FC = () => (
 const HeroSection: React.FC = () => (
   <section className="relative min-h-screen flex items-center justify-center px-4 pt-20">
     <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-    
+
       <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight leading-tight text-white">
         Neel Patel
       </h1>
 
       <h2 className="text-xl md:text-3xl text-slate-300 font-light">
-        Software Engineer • Problem Solver • AI Systems Architect
+        Software Engineer • Problem Solver
       </h2>
 
       <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-        Designing end‑to‑end AI systems — from multi‑agent LLM orchestration and RAG pipelines to serverless backends,
-        resilient APIs, and production‑ready cloud infrastructure.
+        AI-focused developer building serverless architectures and RAG pipelines on AWS. Skilled in microservices, APIs (REST, GraphQL), and scalable databases.
       </p>
-
       <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
         {/* Directed to GitHub — swap href when portfolio page is ready */}
         <a
@@ -264,7 +263,7 @@ const AboutSection: React.FC = () => (
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-violet-500/30 rounded-full blur-2xl" />
           <div className="relative w-full h-full rounded-full border-2 border-cyan-400/60 overflow-hidden shadow-[0_0_40px_rgba(0,243,255,0.25)]">
             <img
-              src="/profile.png"
+              src={`${import.meta.env.BASE_URL}profile.png`}
               alt="Neel Patel"
               className="w-full h-full object-cover object-top"
             />
@@ -372,9 +371,15 @@ const ProjectsSection: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
-                  {project.link} <ArrowRight size={16} className="ml-1" />
-                </a>
+                {project.url.startsWith('http') ? (
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
+                    {project.link} <ArrowRight size={16} className="ml-1" />
+                  </a>
+                ) : (
+                  <Link href={project.url} className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
+                    {project.link} <ArrowRight size={16} className="ml-1" />
+                  </Link>
+                )}
               </div>
             );
           })}
@@ -531,7 +536,7 @@ const AchievementsSection: React.FC = () => {
         </div>
 
         {/* Footer pill */}
-      
+
       </div>
     </section>
   );

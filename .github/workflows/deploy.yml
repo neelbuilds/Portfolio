@@ -12,10 +12,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
+# Allow only one concurrent deployment, skip runs queued between the run in-progress and latest queued.
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -37,19 +37,24 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm run build
         env:
+          NODE_ENV: production
           VITE_BASE_URL: /Portfolio/
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: List build output (debug)
+        run: ls -la dist/public/
 
-      - name: Upload artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # Must point to the folder containing index.html
           path: ./dist/public
 
   deploy:

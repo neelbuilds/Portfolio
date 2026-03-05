@@ -1,11 +1,15 @@
-import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
 
+// GitHub Pages deploys to https://neelbuilds.github.io/Portfolio/
+// Set base to the repo name so all asset paths resolve correctly.
+const base = process.env.VITE_BASE_URL ?? "/Portfolio/";
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), jsxLocPlugin()],
+  base,
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -25,8 +29,7 @@ export default defineConfig({
     host: true,
     allowedHosts: ["localhost", "127.0.0.1"],
     fs: {
-      strict: true,
-      deny: ["**/.*"],
+      strict: false,
     },
   },
 });

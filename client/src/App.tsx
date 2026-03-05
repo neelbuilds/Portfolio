@@ -6,7 +6,7 @@ import Portfolio from "./pages/Portfolio";
 import LLMCouncilDetails from "./pages/LLMCouncilDetails";
 import InsightForgeDetails from "./pages/InsightForgeDetails";
 import NotFound from "./pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router, Switch } from "wouter";
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component<
@@ -49,19 +49,25 @@ class ErrorBoundary extends React.Component<
 }
 
 function App() {
+  // Base path must match the GitHub Pages repo name.
+  // For local dev with `vite` this is harmless — wouter strips the prefix.
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "") || "";
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Switch>
-            <Route path="/" component={Portfolio} />
-            <Route path="/projects/llm-council" component={LLMCouncilDetails} />
-            <Route path="/projects/insightforge" component={InsightForgeDetails} />
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
+          <Router base={base}>
+            <Switch>
+              <Route path="/" component={Portfolio} />
+              <Route path="/projects/llm-council" component={LLMCouncilDetails} />
+              <Route path="/projects/insightforge" component={InsightForgeDetails} />
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </Router>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

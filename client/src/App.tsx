@@ -3,8 +3,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Portfolio from "./pages/Portfolio";
-import LLMCouncilDetails from "./pages/LLMCouncilDetails";
-import InsightForgeDetails from "./pages/InsightForgeDetails";
+import EducationPlatformDetails from "./pages/EducationPlatformDetails";
+import TemperatureKiosksDetails from "./pages/TemperatureKiosksDetails";
 import NotFound from "./pages/NotFound";
 import { Route, Router, Switch } from "wouter";
 
@@ -61,8 +61,8 @@ function App() {
           <Router base={base}>
             <Switch>
               <Route path="/" component={Portfolio} />
-              <Route path="/projects/llm-council" component={LLMCouncilDetails} />
-              <Route path="/projects/insightforge" component={InsightForgeDetails} />
+              <Route path="/projects/education-platform" component={EducationPlatformDetails} />
+              <Route path="/projects/temperature-kiosks" component={TemperatureKiosksDetails} />
               <Route>
                 <NotFound />
               </Route>

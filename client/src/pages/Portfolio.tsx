@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import {
-  Github, Linkedin, Mail,
-  ChevronDown, Code2, Database, Globe, Terminal,
-  Layers, Box, Zap, Award, GitBranch, BrainCircuit, Activity, BarChart3, ArrowRight, Send,
-  Server, Cpu, Shield, FlaskConical, Cloud, Network,
+  Github, Linkedin, Mail, ChevronDown, Code2, Database, Globe, Terminal,
+  Layers, Box, Zap, Award, GitBranch, BrainCircuit, Activity, BarChart3,
+  ArrowRight, Send, Cloud, HardDrive, Network, Coffee, Braces, Workflow,
+  Table, Snowflake, Sparkles, Monitor,
 } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -44,7 +44,7 @@ const NeuralCoreBackground: React.FC = () => {
     sphereRef.current = sphere;
 
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 700;
+    const particlesCount = 1100;
     const posArray = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
       posArray[i] = (Math.random() - 0.5) * 20;
@@ -122,7 +122,7 @@ const NeuralCoreBackground: React.FC = () => {
     };
   }, []);
 
-  return <div ref={mountRef} className="fixed inset-0 z-0 pointer-events-none" />;
+  return <div ref={mountRef} className="neural-bg fixed inset-0 z-0 pointer-events-none origin-center" />;
 };
 
 // ============================================================================
@@ -215,18 +215,15 @@ const HeroSection: React.FC = () => (
       </h2>
 
       <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-        AI-focused developer building serverless architectures and RAG pipelines on AWS. Skilled in microservices, APIs (REST, GraphQL), and scalable databases.
+        I build full-stack, production-ready systems on AWS — from scalable web apps and serverless backends to RAG pipelines and ML-powered products. REST, GraphQL, and cloud-native architecture.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-        {/* Directed to GitHub — swap href when portfolio page is ready */}
         <a
-          href="https://github.com/neelpatel19"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#projects"
           className="group relative px-8 py-4 bg-cyan-500 text-slate-950 font-bold text-lg rounded-lg overflow-hidden hover:scale-105 transition-transform inline-flex items-center justify-center gap-2"
         >
           <div className="absolute inset-0 w-full h-full bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
-          <Github size={20} />
+          <Code2 size={20} />
           <span className="relative z-10">View Projects</span>
         </a>
       </div>
@@ -304,19 +301,20 @@ const AboutSection: React.FC = () => (
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      title: "LLM Council",
-      subtitle: "Multi-Agent AI Deliberation Engine",
-      desc: "Multi-LLM orchestration platform where specialist agents debate, critique, and refine answers before they ever reach the user, built on top of cloud-native, serverless infrastructure.",
+      title: "Education Platform",
+      tag: "Freelance",
+      subtitle: "Full-Stack Cloud Application",
+      desc: "Built a scalable online education platform from the ground up — a scientifically-backed learning tool with graphical readers, study calendars, and collaborative features, now serving as a profitable online business.",
       features: [
-        "LLM + RAG agent mesh",
-        "Serverless, event-driven orchestration",
-        "REST / GraphQL APIs for integration",
+        "AWS cloud architecture with auto-scaling",
+        "Stripe-powered subscription billing",
+        "Rich React UI optimized for mobile",
       ],
-      icon: BrainCircuit,
+      icon: Layers,
       color: "text-cyan-400",
       bgColor: "bg-cyan-500/20",
       link: "View Details",
-      url: "/projects/llm-council",
+      url: "/projects/education-platform",
     },
     {
       title: "MediRAG",
@@ -330,15 +328,20 @@ const ProjectsSection: React.FC = () => {
       url: "https://medium.com/@neelemsbhadran/conversational-rag-with-iterative-query-reformulation-increasing-retrieval-accuracy-from-55-to-14391184c392",
     },
     {
-      title: "InsightForge",
-      subtitle: "Intelligent Data Analytics",
-      desc: "Concept-stage AI workspace for turning messy business data into guided insights — architecture, data flows, and UX are designed, implementation is in progress.",
-      features: ["Planned AI-powered exploration", "Planned automated SQL generation", "Planned BI-style dashboards"],
-      icon: BarChart3,
+      title: "Temperature Kiosks Software",
+      tag: "Freelance",
+      subtitle: "Autonomous Kiosk & Access Control Platform",
+      desc: "Built Android kiosk software for pandemic-era temperature screening and mask detection, later extended for RFID and facial-recognition access control — serverless cloud, admin web app, and GraphQL API.",
+      features: [
+        "AWS serverless + Amplify backend",
+        "React admin app, Ionic/Android kiosk clients",
+        "GraphQL API for enterprise integration",
+      ],
+      icon: Monitor,
       color: "text-blue-400",
       bgColor: "bg-blue-500/20",
       link: "View Details",
-      url: "/projects/insightforge",
+      url: "/projects/temperature-kiosks",
     },
   ];
 
@@ -360,7 +363,14 @@ const ProjectsSection: React.FC = () => {
                 <div className={`h-12 w-12 rounded-lg ${project.bgColor} flex items-center justify-center mb-6`}>
                   <Icon className={`w-6 h-6 ${project.color}`} />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                  {'tag' in project && (project as any).tag && (
+                    <span className="text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                      {(project as any).tag}
+                    </span>
+                  )}
+                </div>
                 <p className={`text-sm ${project.color} font-mono mb-4`}>{project.subtitle}</p>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{project.desc}</p>
                 <ul className="text-xs text-slate-500 space-y-2 mb-6 border-t border-white/5 pt-4">
@@ -543,60 +553,143 @@ const AchievementsSection: React.FC = () => {
 };
 
 // ============================================================================
-// SKILLS SECTION
+// SKILLS SECTION – SOLAR SYSTEM AROUND GLOBE
 // ============================================================================
 
-const SkillsSection: React.FC = () => {
-  const skills: { name: string; icon: React.ComponentType<{ className?: string }> }[] = [
-    { name: 'Core Java', icon: Code2 },
-    { name: 'Python', icon: FlaskConical },
-    { name: 'React & Next.js', icon: Globe },
-    { name: 'LLMs & OpenAI', icon: BrainCircuit },
-    { name: 'LangChain & RAG', icon: Activity },
-    { name: 'SQL & PostgreSQL', icon: Database },
-    { name: 'REST & GraphQL APIs', icon: Network },
-    { name: 'Docker & Containers', icon: Box },
-    { name: 'Cloud & AWS', icon: Cloud },
-    { name: 'Linux & Servers', icon: Server },
-    { name: 'CI/CD & DevOps', icon: Cpu },
-    { name: 'Distributed Systems', icon: Layers },
-    { name: 'Data Analytics', icon: BarChart3 },
-    { name: 'Terminal & Shell', icon: Terminal },
-    { name: 'Git & Collaboration', icon: GitBranch },
-    { name: 'Performance Tuning', icon: Zap },
-    { name: 'Security Basics', icon: Shield },
-    { name: 'Awards & Hackathons', icon: Award },
-  ];
+interface OrbitSkill {
+  name: string;
+  icon: React.ReactNode;
+}
 
-  return (
-    <section id="skills" className="relative py-24 px-6 flex items-center justify-center">
-      <div className="text-center z-10 max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-white">Skill Galaxy</h2>
-        <p className="text-slate-500 mb-10 text-xs uppercase tracking-[0.3em]">
-          Technologies I ship with
-        </p>
+interface OrbitRing {
+  radius: number;
+  duration: number;
+  clockwise: boolean;
+  offsetDeg: number;
+  skills: OrbitSkill[];
+}
 
-        <div className="flex flex-wrap justify-center gap-3">
-          {skills.map((skill) => {
-            const Icon = skill.icon;
-            return (
-              <div
-                key={skill.name}
-                className="group inline-flex items-center gap-2 rounded-full bg-slate-900/50 backdrop-blur-xl border border-white/10 px-4 py-2 text-xs md:text-sm text-slate-300 hover:text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300 shadow-[0_0_20px_rgba(15,23,42,0.8)] hover:shadow-[0_0_20px_rgba(0,243,255,0.15)]"
-              >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-950/50 border border-cyan-500/30 shadow-[0_0_8px_rgba(0,243,255,0.3)] group-hover:shadow-[0_0_12px_rgba(0,243,255,0.6)] transition-all">
-                  <Icon className="h-3.5 w-3.5 text-cyan-400" />
-                </span>
-                <span>{skill.name}</span>
-              </div>
-            );
-          })}
-        </div>
+const ORBITS: OrbitRing[] = [
+  {
+    radius: 105,
+    duration: 44,
+    clockwise: true,
+    offsetDeg: -90,
+    skills: [
+      { name: 'TypeScript', icon: <Code2 size={16} className="text-blue-400" /> },
+      { name: 'React', icon: <Globe size={16} className="text-cyan-400" /> },
+      { name: 'Python', icon: <BrainCircuit size={16} className="text-yellow-400" /> },
+      { name: 'Java', icon: <Coffee size={16} className="text-orange-400" /> },
+      { name: 'JavaScript', icon: <Braces size={16} className="text-yellow-300" /> },
+    ],
+  },
+  {
+    radius: 180,
+    duration: 64,
+    clockwise: false,
+    offsetDeg: 0,
+    skills: [
+      { name: 'Node.js', icon: <Terminal size={16} className="text-green-400" /> },
+      { name: 'AWS', icon: <Cloud size={16} className="text-amber-400" /> },
+      { name: 'Docker', icon: <Box size={16} className="text-sky-400" /> },
+      { name: 'PostgreSQL', icon: <Database size={16} className="text-indigo-400" /> },
+      { name: 'MongoDB', icon: <HardDrive size={16} className="text-emerald-400" /> },
+      { name: 'Express', icon: <Zap size={16} className="text-yellow-200" /> },
+    ],
+  },
+  {
+    radius: 255,
+    duration: 90,
+    clockwise: true,
+    offsetDeg: 25,
+    skills: [
+      { name: 'GraphQL', icon: <GitBranch size={16} className="text-pink-400" /> },
+      { name: 'Redis', icon: <Database size={16} className="text-red-400" /> },
+      { name: 'SQL', icon: <Table size={16} className="text-slate-300" /> },
+      { name: 'Snowflake', icon: <Snowflake size={16} className="text-cyan-300" /> },
+      { name: 'Spark', icon: <Sparkles size={16} className="text-orange-300" /> },
+      { name: 'n8n', icon: <Workflow size={16} className="text-emerald-300" /> },
+      { name: 'Tableau', icon: <BarChart3 size={16} className="text-blue-300" /> },
+    ],
+  },
+];
 
+const SkillsSection: React.FC = () => (
+  <section id="skills" className="relative py-20 px-4">
+    <div className="max-w-4xl mx-auto flex flex-col items-center">
+      <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-1 text-center relative z-10">
+        Skill Galaxy
+      </h2>
+      <p className="text-slate-500 text-xs tracking-[0.25em] uppercase mb-10 text-center relative z-10">
+        Technologies orbiting my core
+      </p>
+
+      <div className="relative w-[560px] h-[560px] max-w-[88vw] max-h-[88vw] mx-auto">
+        {/* Static orbit rings */}
+        {ORBITS.map(({ radius }) => (
+          <div
+            key={radius}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: radius * 2,
+              height: radius * 2,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              border: '1.5px solid rgba(255,255,255,0.15)',
+            }}
+          />
+        ))}
+
+        {/* Rotating orbit groups */}
+        {ORBITS.map(({ radius, duration, clockwise, offsetDeg, skills }) => {
+          const orbitAnim = clockwise ? 'orbit-cw' : 'orbit-ccw';
+          const nodeAnim = clockwise ? 'orbit-ccw' : 'orbit-cw';
+          return (
+            <div
+              key={radius}
+              className="skill-orbit"
+              style={{
+                animationName: orbitAnim,
+                animationDuration: `${duration}s`,
+              }}
+            >
+              {skills.map((skill, idx) => {
+                const angleDeg = (idx / skills.length) * 360 + offsetDeg;
+                const angleRad = (angleDeg * Math.PI) / 180;
+                return (
+                  <div
+                    key={skill.name}
+                    className="skill-orbit-node"
+                    style={{
+                      left: Math.cos(angleRad) * radius,
+                      top: Math.sin(angleRad) * radius,
+                    }}
+                  >
+                    <div
+                      className="skill-orbit-node-inner"
+                      style={{
+                        animationName: nodeAnim,
+                        animationDuration: `${duration}s`,
+                      }}
+                    >
+                      <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900/80 backdrop-blur-sm border border-white/[0.12] shadow-md">
+                        {skill.icon}
+                      </div>
+                      <span className="text-[9px] text-slate-400 whitespace-nowrap font-medium leading-none tracking-wide">
+                        {skill.name}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 // ============================================================================
 // CONTACT SECTION
@@ -678,6 +771,19 @@ const Portfolio: React.FC = () => {
         ease: 'power3.out',
       });
     });
+
+    // ── BACKGROUND GLOBE SCALE AROUND SKILLS ──
+    const skillsTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#skills',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 0.6,
+      },
+    });
+    skillsTl
+      .to('.neural-bg', { scale: 0.3, y: '10vh', duration: 0.5 })
+      .to('.neural-bg', { scale: 1, y: '0vh', duration: 0.5 }, 0.5);
 
     // ── TIMELINE BALL ──
     const ball = document.querySelector<HTMLElement>('.timeline-moving-ball');

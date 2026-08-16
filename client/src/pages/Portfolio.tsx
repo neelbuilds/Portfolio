@@ -82,7 +82,6 @@ const NeuralCoreBackground: React.FC = () => {
       requestAnimationFrame(animate);
 
       if (sphereRef.current) {
-        // Noticeable spin at the top, gently influenced by scroll
         sphereRef.current.rotation.x += 0.0008 + scrollProgress * 0.0015;
         sphereRef.current.rotation.y += 0.0012 + scrollProgress * 0.0025;
         sphereRef.current.position.y = Math.sin(Date.now() * 0.001 + scrollProgress) * 0.12;
@@ -168,8 +167,8 @@ const CustomCursor: React.FC = () => {
 
   return (
     <>
-      <div ref={dotRef} className={`fixed w-3 h-3 rounded-full pointer-events-none z-[9999] ${isHovering ? 'bg-cyan-400 shadow-[0_0_20px_rgba(0,243,255,0.8)]' : 'bg-violet-400 shadow-[0_0_15px_rgba(188,19,254,0.6)]'}`} style={{ transform: 'translate(-50%,-50%)' }} />
-      <div ref={outlineRef} className={`fixed w-10 h-10 rounded-full pointer-events-none z-[9999] border ${isHovering ? 'border-cyan-400 shadow-[0_0_15px_rgba(0,243,255,0.5)]' : 'border-violet-400 shadow-[0_0_10px_rgba(188,19,254,0.3)]'}`} style={{ transform: 'translate(-50%,-50%)' }} />
+      <div ref={dotRef} className={`cursor-dot fixed w-3 h-3 rounded-full pointer-events-none z-[9999] ${isHovering ? 'bg-cyan-400 shadow-[0_0_20px_rgba(0,243,255,0.8)]' : 'bg-violet-400 shadow-[0_0_15px_rgba(188,19,254,0.6)]'}`} style={{ transform: 'translate(-50%,-50%)' }} />
+      <div ref={outlineRef} className={`cursor-outline fixed w-10 h-10 rounded-full pointer-events-none z-[9999] border ${isHovering ? 'border-cyan-400 shadow-[0_0_15px_rgba(0,243,255,0.5)]' : 'border-violet-400 shadow-[0_0_10px_rgba(188,19,254,0.3)]'}`} style={{ transform: 'translate(-50%,-50%)' }} />
     </>
   );
 };
@@ -180,8 +179,8 @@ const CustomCursor: React.FC = () => {
 
 const Navigation: React.FC = () => (
   <nav className="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl border-b border-white/10">
-    <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" className="text-2xl font-display font-bold tracking-tighter text-white hover:text-cyan-400 transition-colors">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <a href="#" className="text-xl sm:text-2xl font-display font-bold tracking-tighter text-white hover:text-cyan-400 transition-colors">
         NEEL<span className="text-violet-400">.DEV</span>
       </a>
       <div className="hidden md:flex gap-8 text-sm font-medium text-slate-300">
@@ -204,23 +203,23 @@ const Navigation: React.FC = () => (
 
 const HeroSection: React.FC = () => (
   <section className="relative min-h-screen flex items-center justify-center px-4 pt-20">
-    <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+    <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
 
-      <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight leading-tight text-white">
+      <h1 className="text-[2.25rem] sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight leading-[1.1] text-white">
         Neel Patel
       </h1>
 
-      <h2 className="text-xl md:text-3xl text-slate-300 font-light">
+      <h2 className="text-base sm:text-xl md:text-3xl text-slate-300 font-light">
         Software Engineer • Problem Solver
       </h2>
 
-      <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-        I build full-stack, production-ready systems on AWS — from scalable web apps and serverless backends to RAG pipelines and ML-powered products. REST, GraphQL, and cloud-native architecture.
+      <p className="text-slate-400 max-w-2xl mx-auto text-[13px] sm:text-base md:text-lg leading-relaxed px-2 sm:px-0">
+        I build full-stack, production-ready systems on AWS — scalable web apps, serverless backends, RAG pipelines, and ML-powered products. On the frontend, I craft lightweight, high-performance UIs in React and Next.js with polished micro-interactions and animation systems.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
         <a
           href="#projects"
-          className="group relative px-8 py-4 bg-cyan-500 text-slate-950 font-bold text-lg rounded-lg overflow-hidden hover:scale-105 transition-transform inline-flex items-center justify-center gap-2"
+          className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-cyan-500 text-slate-950 font-bold text-base sm:text-lg rounded-lg overflow-hidden hover:scale-105 transition-transform inline-flex items-center justify-center gap-2"
         >
           <div className="absolute inset-0 w-full h-full bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
           <Code2 size={20} />
@@ -228,20 +227,20 @@ const HeroSection: React.FC = () => (
         </a>
       </div>
 
-      <div className="flex justify-center gap-6 pt-8">
+      <div className="flex justify-center gap-5 sm:gap-6 pt-6 sm:pt-8">
         <a href="https://github.com/neelpatel19" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">
-          <Github size={24} />
+          <Github size={22} className="sm:w-6 sm:h-6" />
         </a>
         <a href="https://www.linkedin.com/in/neel-patel19/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">
-          <Linkedin size={24} />
+          <Linkedin size={22} className="sm:w-6 sm:h-6" />
         </a>
         <a href="mailto:neelemsbhadran@gmail.com" className="text-slate-400 hover:text-cyan-400 transition-colors">
-          <Mail size={24} />
+          <Mail size={22} className="sm:w-6 sm:h-6" />
         </a>
       </div>
 
-      <div className="flex justify-center pt-12">
-        <ChevronDown size={32} className="text-cyan-400 animate-bounce" />
+      <div className="flex justify-center pt-8 sm:pt-12">
+        <ChevronDown size={28} className="sm:w-8 sm:h-8 text-cyan-400 animate-bounce" />
       </div>
     </div>
   </section>
@@ -252,11 +251,11 @@ const HeroSection: React.FC = () => (
 // ============================================================================
 
 const AboutSection: React.FC = () => (
-  <section id="about" className="relative py-24 px-6">
-    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+  <section id="about" className="relative py-12 sm:py-24 px-4 sm:px-6">
+    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
       {/* Profile Picture — left column */}
       <div className="flex justify-center">
-        <div className="relative w-68 h-68 max-w-xs md:max-w-none">
+        <div className="relative w-44 h-44 sm:w-64 sm:h-64 md:w-72 md:h-72">
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-violet-500/30 rounded-full blur-2xl" />
           <div className="relative w-full h-full rounded-full border-2 border-cyan-400/60 overflow-hidden shadow-[0_0_40px_rgba(0,243,255,0.25)]">
             <img
@@ -271,21 +270,20 @@ const AboutSection: React.FC = () => (
       {/* Text card — right column */}
       <div className="relative">
         <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 blur-xl rounded-2xl" />
-        <div className="relative bg-slate-900/40 backdrop-blur-xl p-8 rounded-2xl border border-white/10">
-          <h3 className="text-3xl font-display font-bold mb-6 text-white">About Me</h3>
-          <p className="text-slate-300 leading-relaxed mb-4">
-            Hi, I&apos;m <span className="text-cyan-400 font-semibold">Neel Patel</span> — an engineer focused on
-            large language models and the systems that support them. I operate like a senior backend and platform
-            developer, comfortable owning architecture from whiteboard to production.
+        <div className="relative bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 rounded-2xl border border-white/10">
+          <h3 className="text-xl sm:text-3xl font-display font-bold mb-3 sm:mb-6 text-white">About Me</h3>
+          <p className="text-slate-300 leading-relaxed mb-3 sm:mb-4 text-[13px] sm:text-base">
+            Hi, I&apos;m <span className="text-cyan-400 font-semibold">Neel Patel</span> — a full-stack engineer
+            who owns architecture from whiteboard to production. On the backend I design serverless systems,
+            cloud infrastructure, scalable databases, and REST/GraphQL APIs; on the frontend I build lightweight,
+            high-performance UIs in React and Next.js with polished micro-interactions.
           </p>
-          <p className="text-slate-300 leading-relaxed mb-4">
-            I&apos;m comfortable across the stack: designing serverless architectures, cloud infrastructure, and
-            scalable databases; building microservices and event-driven systems; and exposing everything through
-            well-designed REST and GraphQL APIs. I also collaborate on the frontend using Next.js so ideas move
-            smoothly from backend to user experience.
+          <p className="text-slate-300 leading-relaxed mb-3 sm:mb-4 text-[13px] sm:text-base">
+            I bridge backend robustness with frontend polish so ideas move smoothly from concept to user
+            experience — event-driven services, thoughtful data layers, and interfaces that feel fast and considered.
           </p>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Apart from work, I love <span className="text-violet-300">destroying and rebuilding my home server lab</span>, and grounding all that tech energy in <span className="text-violet-300">gardening</span>.
+          <p className="text-slate-400 text-[12px] sm:text-sm leading-relaxed">
+            Apart from working on projects, I love <span className="text-violet-300">destroying and rebuilding my home server</span> — taking it apart, breaking things, and building them back better.
           </p>
 
         </div>
@@ -346,34 +344,34 @@ const ProjectsSection: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="relative py-24 px-6">
+    <section id="projects" className="relative py-12 sm:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+        <div className="text-center mb-10 sm:mb-20">
+          <h2 className="text-xl sm:text-3xl md:text-5xl font-display font-bold mb-4">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">Projects</span>
           </h2>
           <div className="h-1 w-20 bg-cyan-400 mx-auto rounded-full shadow-[0_0_15px_#00f3ff]" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-5 sm:gap-8">
           {projects.map((project, idx) => {
             const Icon = project.icon;
             return (
-              <div key={idx} className="group bg-slate-900/40 backdrop-blur-xl rounded-xl p-6 border border-white/10 hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(188,19,254,0.15)] flex flex-col h-full">
-                <div className={`h-12 w-12 rounded-lg ${project.bgColor} flex items-center justify-center mb-6`}>
-                  <Icon className={`w-6 h-6 ${project.color}`} />
+              <div key={idx} className="group bg-slate-900/40 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-white/10 hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(188,19,254,0.15)] flex flex-col h-full">
+                <div className={`h-9 w-9 sm:h-12 sm:w-12 rounded-lg ${project.bgColor} flex items-center justify-center mb-3 sm:mb-6`}>
+                  <Icon className={`w-4 h-4 sm:w-6 sm:h-6 ${project.color}`} />
                 </div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <h3 className="text-base sm:text-xl font-bold text-white">{project.title}</h3>
                   {'tag' in project && (project as any).tag && (
-                    <span className="text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                    <span className="text-[9px] sm:text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
                       {(project as any).tag}
                     </span>
                   )}
                 </div>
-                <p className={`text-sm ${project.color} font-mono mb-4`}>{project.subtitle}</p>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{project.desc}</p>
-                <ul className="text-xs text-slate-500 space-y-2 mb-6 border-t border-white/5 pt-4">
+                <p className={`text-[11px] sm:text-sm ${project.color} font-mono mb-2 sm:mb-4`}>{project.subtitle}</p>
+                <p className="text-slate-400 text-[12px] sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">{project.desc}</p>
+                <ul className="text-[11px] sm:text-xs text-slate-500 space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 border-t border-white/5 pt-3 sm:pt-4">
                   {project.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2">
                       <span className={`w-1 h-1 rounded-full bg-current ${project.color}`} />
@@ -382,12 +380,12 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </ul>
                 {project.url.startsWith('http') ? (
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
-                    {project.link} <ArrowRight size={16} className="ml-1" />
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs sm:text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
+                    {project.link} <ArrowRight size={14} className="ml-1 sm:w-4 sm:h-4" />
                   </a>
                 ) : (
-                  <Link href={project.url} className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
-                    {project.link} <ArrowRight size={16} className="ml-1" />
+                  <Link href={project.url} className="inline-flex items-center text-xs sm:text-sm font-semibold text-slate-300 hover:text-cyan-300 transition-colors">
+                    {project.link} <ArrowRight size={14} className="ml-1 sm:w-4 sm:h-4" />
                   </Link>
                 )}
               </div>
@@ -431,31 +429,84 @@ const AchievementsSection: React.FC = () => {
     },
   ];
 
-  const currentYear = new Date().getFullYear();
-
   return (
-    <section id="certifications" className="relative py-24 px-6 overflow-hidden">
+    <section id="certifications" className="relative py-12 sm:py-24 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white">
+        <div className="text-center mb-10 sm:mb-20">
+          <h2 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white leading-tight">
             Achievements &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">Certifications</span>
           </h2>
-          <p className="text-slate-400 mt-3">From competitions to continuous learning</p>
-          <div className="h-1 w-20 bg-cyan-400 mx-auto rounded-full shadow-[0_0_15px_#00f3ff] mt-4" />
+          <p className="text-slate-400 mt-2 sm:mt-3 text-xs sm:text-base">From competitions to continuous learning</p>
+          <div className="h-1 w-20 bg-cyan-400 mx-auto rounded-full shadow-[0_0_15px_#00f3ff] mt-3 sm:mt-4" />
         </div>
 
-        {/* TIMELINE WRAPPER — position:relative so the ball's getBoundingClientRect works */}
-        <div className="relative timeline-container">
-
-          {/* Vertical spine — perfectly centered */}
+        {/* ── MOBILE TIMELINE ── */}
+        <div className="md:hidden relative pl-6">
+          {/* Vertical spine */}
           <div
-            className="hidden md:block absolute top-0 bottom-0 bg-gradient-to-b from-cyan-400/70 via-violet-400/50 to-cyan-400/70"
+            className="absolute left-2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400/70 via-violet-400/50 to-cyan-400/70"
+          />
+          {/* Glowing travelling ball */}
+          <div
+            className="timeline-moving-ball-mobile absolute z-30 rounded-full"
+            style={{
+              width: '14px',
+              height: '14px',
+              left: '8px',
+              top: '0px',
+              transform: 'translate(-50%, -50%)',
+              background: 'radial-gradient(circle, #67e8f9 0%, #00f3ff 60%)',
+              boxShadow: '0 0 0 3px rgba(0,243,255,0.15), 0 0 12px rgba(0,243,255,1), 0 0 30px rgba(0,243,255,0.5)',
+            }}
+          />
+
+          <div className="flex flex-col gap-6">
+            {achievements.map((item, idx) => (
+              <div
+                key={idx}
+                className="achievement-item-mobile relative pb-1"
+              >
+                {/* Dot on spine */}
+                <div
+                  className="timeline-dot-mobile absolute left-2 top-2 w-2.5 h-2.5 -translate-x-1/2 rounded-full border-2 border-slate-800 bg-slate-950 transition-all duration-300 z-10"
+                />
+
+                {/* Content */}
+                <div className="pl-5">
+                  <div className="text-cyan-400 text-[10px] font-mono tracking-[0.2em] uppercase mb-1">{item.year}</div>
+                  <h3 className="text-base font-bold text-white mb-1 leading-tight">{item.title}</h3>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-widest mb-2.5">{item.subtitle}</p>
+                  <div className={`achievement-card w-full bg-slate-900/50 backdrop-blur-xl p-3.5 rounded-xl border-l-4 ${item.accentColor} border border-white/10 transition-all duration-300`}>
+                    <p className="text-slate-300 text-[12px] leading-relaxed mb-2.5">{item.desc}</p>
+                    {item.links.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {item.links.map((link) => (
+                          <a key={link.text} href={link.url} target="_blank" rel="noopener noreferrer"
+                            className="text-[11px] px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-300 transition-colors">
+                            {link.text} ↗
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── DESKTOP TIMELINE ── */}
+        <div className="hidden md:block relative timeline-container">
+
+          {/* Vertical spine */}
+          <div
+            className="absolute top-0 bottom-0 bg-gradient-to-b from-cyan-400/70 via-violet-400/50 to-cyan-400/70"
             style={{ left: '50%', transform: 'translateX(-50%)', width: '2px' }}
           />
 
           {/* Glowing travelling ball */}
           <div
-            className="timeline-moving-ball hidden md:block absolute z-30 rounded-full"
+            className="timeline-moving-ball absolute z-30 rounded-full"
             style={{
               width: '18px',
               height: '18px',
@@ -501,7 +552,7 @@ const AchievementsSection: React.FC = () => {
                     )}
                   </div>
 
-                  {/* CENTER DOT — this column is exactly on the spine */}
+                  {/* CENTER DOT */}
                   <div className="flex items-center justify-center" style={{ width: '2px', position: 'relative' }}>
                     <div
                       className="timeline-dot absolute rounded-full border-2 border-slate-800 bg-slate-950 transition-all duration-300 z-10"
@@ -544,8 +595,6 @@ const AchievementsSection: React.FC = () => {
             })}
           </div>
         </div>
-
-        {/* Footer pill */}
 
       </div>
     </section>
@@ -615,16 +664,32 @@ const ORBITS: OrbitRing[] = [
 ];
 
 const SkillsSection: React.FC = () => (
-  <section id="skills" className="relative py-20 px-4">
+  <section id="skills" className="relative py-12 sm:py-20 px-4">
     <div className="max-w-4xl mx-auto flex flex-col items-center">
-      <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-1 text-center relative z-10">
+      <h2 className="text-xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-1 text-center relative z-10">
         Skill Galaxy
       </h2>
-      <p className="text-slate-500 text-xs tracking-[0.25em] uppercase mb-10 text-center relative z-10">
+      <p className="text-slate-500 text-[9px] sm:text-xs tracking-[0.25em] uppercase mb-6 sm:mb-10 text-center relative z-10">
         Technologies orbiting my core
       </p>
 
-      <div className="relative w-[560px] h-[560px] max-w-[88vw] max-h-[88vw] mx-auto">
+      {/* Mobile skill grid */}
+      <div className="md:hidden w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {ORBITS.flatMap(o => o.skills).map((skill, idx) => (
+            <div
+              key={idx}
+              className="flex items-center gap-2 bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-lg px-2.5 py-2"
+            >
+              <div className="flex-shrink-0">{skill.icon}</div>
+              <span className="text-[11px] sm:text-xs text-slate-300 font-medium truncate">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop orbit galaxy */}
+      <div className="hidden md:block relative w-[560px] h-[560px] mx-auto">
         {/* Static orbit rings */}
         {ORBITS.map(({ radius }) => (
           <div
@@ -704,48 +769,48 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative min-h-[80vh] flex items-center justify-center px-6 py-20">
-      <div className="bg-slate-900/40 backdrop-blur-xl p-8 md:p-12 rounded-2xl max-w-xl w-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-display font-bold text-white mb-4">Let Ideas Meet Tech</h2>
-          <p className="text-slate-400 text-sm">
+    <section id="contact" className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
+      <div className="bg-slate-900/40 backdrop-blur-xl p-5 sm:p-8 md:p-12 rounded-2xl max-w-xl w-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="text-center mb-6 sm:mb-10">
+          <h2 className="text-xl sm:text-3xl font-display font-bold text-white mb-3 sm:mb-4">Let Ideas Meet Tech</h2>
+          <p className="text-slate-400 text-[12px] sm:text-sm">
             Share your email and idea, and I&apos;ll get back to you with how we can build it.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="group">
-            <label className="block text-xs font-mono text-slate-500 mb-2 group-focus-within:text-cyan-400 transition-colors">EMAIL</label>
+            <label className="block text-[10px] sm:text-xs font-mono text-slate-500 mb-1.5 sm:mb-2 group-focus-within:text-cyan-400 transition-colors">EMAIL</label>
             <input
               type="email"
               placeholder="your@email.com"
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all"
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white text-[13px] sm:text-base focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all"
             />
           </div>
           <div className="group">
-            <label className="block text-xs font-mono text-slate-500 mb-2 group-focus-within:text-cyan-400 transition-colors">MESSAGE</label>
+            <label className="block text-[10px] sm:text-xs font-mono text-slate-500 mb-1.5 sm:mb-2 group-focus-within:text-cyan-400 transition-colors">MESSAGE</label>
             <textarea
               rows={4}
               placeholder="Tell me about your project..."
               required
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all"
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white text-[13px] sm:text-base focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-cyan-500 text-slate-950 font-bold py-3 rounded-lg hover:bg-cyan-400 transition-all duration-300 flex items-center justify-center gap-2 group"
+            className="w-full bg-cyan-500 text-slate-950 font-bold py-2.5 sm:py-3 rounded-lg hover:bg-cyan-400 transition-all duration-300 flex items-center justify-center gap-2 group"
           >
-            <span>Send Message</span>
-            <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+            <span className="text-[13px] sm:text-base">Send Message</span>
+            <Send size={15} className="sm:w-[18px] sm:h-[18px] group-hover:translate-x-1 transition-transform" />
           </button>
         </form>
 
-        <div className="border-t border-white/10 mt-8 pt-8 text-slate-500 text-sm">
+        <div className="border-t border-white/10 mt-5 sm:mt-8 pt-5 sm:pt-8 text-slate-500 text-[11px] sm:text-sm">
           <p>© {new Date().getFullYear()} Neel Patel. All rights reserved.</p>
         </div>
       </div>
@@ -785,7 +850,7 @@ const Portfolio: React.FC = () => {
       .to('.neural-bg', { scale: 0.3, y: '10vh', duration: 0.5 })
       .to('.neural-bg', { scale: 1, y: '0vh', duration: 0.5 }, 0.5);
 
-    // ── TIMELINE BALL ──
+    // ── DESKTOP TIMELINE BALL ──
     const ball = document.querySelector<HTMLElement>('.timeline-moving-ball');
     const items = gsap.utils.toArray<HTMLElement>('.achievement-item');
 
@@ -797,7 +862,6 @@ const Portfolio: React.FC = () => {
       gsap.to(ball, { top: targetTop, duration: 0.55, ease: 'power2.inOut' });
     };
 
-    // Snap to first item on load
     if (items.length > 0) {
       setTimeout(() => moveBallToItem(items[0] as HTMLElement), 200);
     }
@@ -827,13 +891,54 @@ const Portfolio: React.FC = () => {
       });
     });
 
+    // ── MOBILE TIMELINE BALL ──
+    const mobileBall = document.querySelector<HTMLElement>('.timeline-moving-ball-mobile');
+    const mobileItems = gsap.utils.toArray<HTMLElement>('.achievement-item-mobile');
+
+    const moveMobileBallToItem = (item: HTMLElement) => {
+      if (!mobileBall || !mobileBall.parentElement) return;
+      const itemRect = item.getBoundingClientRect();
+      const parentRect = mobileBall.parentElement.getBoundingClientRect();
+      const targetTop = itemRect.top - parentRect.top + itemRect.height / 2;
+      gsap.to(mobileBall, { top: targetTop, duration: 0.55, ease: 'power2.inOut' });
+    };
+
+    if (mobileItems.length > 0) {
+      setTimeout(() => moveMobileBallToItem(mobileItems[0] as HTMLElement), 200);
+    }
+
+    mobileItems.forEach((item) => {
+      const dot = item.querySelector<HTMLElement>('.timeline-dot-mobile');
+
+      const activate = () => {
+        moveMobileBallToItem(item as HTMLElement);
+        item.classList.add('achievement-active');
+        if (dot) dot.classList.add('dot-active');
+      };
+
+      const deactivate = () => {
+        item.classList.remove('achievement-active');
+        if (dot) dot.classList.remove('dot-active');
+      };
+
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 65%',
+        end: 'bottom 35%',
+        onEnter: activate,
+        onEnterBack: activate,
+        onLeave: deactivate,
+        onLeaveBack: deactivate,
+      });
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <div className="bg-slate-950 text-white overflow-hidden cursor-none">
+    <div className="bg-slate-950 text-white overflow-hidden md:cursor-none">
       <NeuralCoreBackground />
       <CustomCursor />
       <Navigation />
